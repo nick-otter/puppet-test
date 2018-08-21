@@ -8,6 +8,34 @@ Investigating configuring an Ubuntu Linux server using Puppet.
 - .tf files for Puppet Master server: `puppet_master.tf`, `puppet_master_variables.tf`.
 - .tf files for Puppet Agent node server: [here](https://github.com/nick-otter/terraform-azure-virtual-machine[]).
 
+## Requirements
+
+Authenticate Azure via the CLI as documented [here](https://www.terraform.io/docs/providers/azurerm/authenticating_via_azure_cli.html).
+
+A Puppet Agent node server which can be created using `Terraform` [here](https://github.com/nick-otter/terraform-azure-virtual-machine[]).
+
+## Usage
+
+Build Puppet Master server:
+
+```aidl
+$ terraform apply
+```
+
+`SCP` (Secure Copy) installation commands to Puppet Master server:
+```aidl
+$ scp -i /path/id_rsa install_puppet_server_commands.sh azureuser@< Puppet Master server IP >:
+```
+
+`SCP` (Secure Copy) installation commands to Puppet Agent server:
+```aidl
+$ scp -i /path/id_rsa install_puppet_agent_commands.sh azureuser@< Puppet Agent server IP >:
+```
+
+To run installation commands use `$ bash`.
+
+
+
 ## Notes on Process
 
 As I haven't used Puppet before, I have highlighted parts of the process to use Puppet that are interesting or differ from Ansible.
